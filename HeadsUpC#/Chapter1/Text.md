@@ -42,4 +42,30 @@
 * O primeiro uso disso é para adicionar colunas e linhas no Grid. Clicando na borda no Editor XAML, automaticamente surgem linhas e colunas, que se refletem no código com ColumnDefinition e RowDefinition, que são propriedades de Grid. As colunas usam tamanhos proporcionais e remover qualquer informação de tamanho torna-as igualmente espaçadas.
 * É possível alterar as propriedades no código ou simplesmente usando a tela de Propriedades do Visual Studio. Ela aparece, normalmente como uma "lâmpada" acima do objeto WPF. Ela permite, graficamente, mudar fonte, espaçamento, margem, centralização etc.
 * O WPF usa pixels independentes do dispositivo. Isso permite que o projeto seja adaptável aos dispositivos.
-  
+* O projeto em si será adicionado em outro repositório, pois não é possível adicioná-lo aqui. 
+	* O procedimento geral foi: iniciamos com a construção do XAML. Uma vez que o Grid estava estabelecido, com divisórias e com os TextBlock, fomos para o código C#. Lá, adicionamos um gerador aleatório de números que substituia cada TextBlock, aleatoriamente, por um emoji dentro de uma lista.
+	* Em determinado ponto do projeto, apresenta-se o controle de versão via Git, notavelmente o GitHub (que é um provedor de Git). Apresenta-se a utilização do Team Explorer, tela própria do Visual Studio, que permite o controle de versão via botões, sem necessidade de digitar comandos.
+	* Uma vez adicionado o projeto no GitHub, com o esboço da tela pronto, adicionamos um manipulador de eventos, que é o nome do método chamado quando certas ações são realizadas (exemplo: clique).
+	* Um comentário de várias linhas no C# é feito com /* */, enquanto um comentário de uma linha é feito com //
+	* Para adicionar um manipulador de eventos, voltamos na tela do XAML, clicamos em Propriedades e adicionamos um Evento, notavelmente em MouseDown. Quando colocarmos o nome, ele irá gerar automaticamente um novo método no arquivo C#, que precisa ser construído. A lógica é simples.
+	* Depois de adicionar o manipulador de eventos, que já terá toda a lógica do jogo, vamos adicionar um cronômetro, que começa quando o jogador inicia o jogo e pausa quando o último animal é combinado.
+  	* Para adicionar o cronômetro, vamos adicionar um novo TextBlock e associá-lo a um novo evento. Quando o clique for efetuado, caso seja o primeiro clique, o temporizador começará a contar. Caso os oito pares sejam encontrados, o temporizador irá pausar e o jogo irá reiniciar.
+	* Neste ponto, é apresentado o uso do depurador para descobrir bugs. É útil quando uma exceção surge no código. É de se destacar que exceções são boas práticas, pois garantem que bugs foram identificados. Cada exceção possui um tipo: nesse caso, é uma exceção ArgumentOutOfRangeException.
+	* A exceção, nesse caso, aconteceu porque estávamos fazendo um loop foreach em TextBlock, mas quando adicionamos um novo TextBlock, ficamos com mais blocos do que emojis, gerando um ArgumentOutOfRangeException.
+	* Apresenta-se, também, a aba Depurar >> Janelas >> Locais, que permite visualizar os valores das variáveis durante a depuração.
+	* Como o erro surgiu em uma instrução foreach, é o caso aprofundar o conhecimento nela:
+		* Loop é um modo de executar um bloco de código repetidamente. Eles serão aprofundados no capítulo 2.
+	* Corrigindo os últimos bugs, chegamos ao ponto onde usamos o Team Explorer para gerar um commit no nosso repositório. O link do repositório é: https://github.com/inoa-rfschuinki/MatchGame
+
+## Considerações Finais
+* Sempre que surge um projeto grande, é uma boa ideia dividi-lo em partes menores.
+
+## Resumo Final do Capítulo
+* O Visual Studio controla o número de vezes que um método é referenciado em outro lugar no código C# ou XAML.
+* O IDE facilita adicionar e gerenciar os métodos do manipulador de eventos.
+* Um manipulador de eventos é um método que sua aplicação chama quando ocorre um evento específico, como um clique no mouse, uma tecla pressionada ou o redimensionamento da janela.
+* A janela Lista de Erros do IDE mostra qualquer erro que impede a criação do código.
+* Os cronômetros executam os métodos do manipulador de eventos Tick repetidamente em um intervalo específico.
+* Foreach é um tipo de loop que percorre uma coleção de itens.
+* Quando o programa gerar uma exceção, é possível depurar. As exceções são mais fáceis de corrigir quando reproduzidas.
+* O Visual Studio facilita usar o controle de versão para fazer backup do código e controlar todas as alterações feitas, usando Git.
